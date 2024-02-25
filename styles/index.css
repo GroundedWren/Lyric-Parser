@@ -2,13 +2,13 @@
 	box-sizing: border-box;
 }
 
+body{
+	height: 100vh;
+}
+
 #subveil {
 	display: flex;
 	flex-direction: column;
-}
-
-main {
-	flex-grow: 1;
 }
 
 header button {
@@ -29,6 +29,9 @@ header button {
 }
 
 main {
+	flex-grow: 1;
+	min-height: 0;
+
 	display: flex;
 	gap: 5px;
 	flex-wrap: wrap;
@@ -37,6 +40,10 @@ main {
 main > section {
 	flex-grow: 1;
 	min-width: 300px;
+	min-height: 0px;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
 	background-color: var(--content-color);
 	padding: 5px;
 }
@@ -58,6 +65,7 @@ h2, h3 {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	overflow-y: auto;
 }
 
 .input-list-line {
