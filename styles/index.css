@@ -66,6 +66,7 @@ h2, h3 {
 	flex-direction: column;
 	gap: 5px;
 	overflow-y: auto;
+	margin-top: 5px;
 }
 
 .input-list-line {
