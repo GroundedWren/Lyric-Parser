@@ -1,6 +1,6 @@
 registerNamespace("LyricParser", function (ns)
 {
-	ns.Release = class Release extends ns.CardBE
+	ns.Release = class Release extends Common.Components.CardBE
 	{
 		trackList;
 		btnAddTrack;

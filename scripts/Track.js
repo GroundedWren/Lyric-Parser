@@ -1,6 +1,6 @@
 registerNamespace("LyricParser", function (ns)
 {
-	ns.Track = class Track extends ns.CardBE
+	ns.Track = class Track extends Common.Components.CardBE
 	{
 		constructor()
 		{

@@ -43,9 +43,9 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 	function clearAndLoad()
 	{
 		delete LyricParser.Data;
-		Object.values(LyricParser.BoundElement.instanceMap).forEach(boundEl => boundEl.remove());
-		LyricParser.BoundElement.instanceCount = 0;
-		LyricParser.BoundElement.instanceMap = {};
+		Object.values(Common.Components.BoundElement.instanceMap).forEach(boundEl => boundEl.remove());
+		Common.Components.BoundElement.instanceCount = 0;
+		Common.Components.BoundElement.instanceMap = {};
 
 		loadDiscographyFromFile();
 	}
@@ -125,7 +125,7 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 
 	ns.saveDiscography = function saveDiscography()
 	{
-		Object.values(LyricParser.BoundElement.instanceMap).forEach(boundEl => boundEl.saveData());
+		Object.values(Common.Components.BoundElement.instanceMap).forEach(boundEl => boundEl.saveData());
 
 		LyricParser.Data = LyricParser.Data || {};
 		LyricParser.Data.Meta = LyricParser.Data.Meta || {};
