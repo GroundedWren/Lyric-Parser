@@ -68,6 +68,15 @@ registerNamespace("LyricParser", function (ns)
 								data-prop="Name"
 							/>
 						</div>
+						<div class="input-vertical">
+							<label for="${this.idKey}-txtLyrics">Lyrics</label>
+							<textarea id="${this.idKey}-txtLyrics"
+								data-owner=${this.idKey}
+								data-prop="LyricsText"
+								rows="3"
+								cols="50"
+							></textarea>
+						</div>
 					</div>
 				</div>
 			</article>

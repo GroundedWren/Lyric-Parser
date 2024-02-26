@@ -187,6 +187,15 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 
 		document.getElementById("trackContainer").prepend(trackEl);
 
+		if (trackEl.openCloseBtnId)
+		{
+			const ocBtn = document.getElementById(trackEl.openCloseBtnId);
+			if (ocBtn.getAttribute("aria-pressed") === "true")
+			{
+				ocBtn.click();
+			}
+		}
+
 		if (trackEl.focusAnchor)
 		{
 			trackEl.focusAnchor.focus();
