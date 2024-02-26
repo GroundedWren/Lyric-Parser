@@ -33,7 +33,7 @@ registerNamespace("LyricParser", function (ns)
 
 		tryMoveData(toLoc)
 		{
-			if (!this.dataParent[toLoc])
+			if (this.dataParent[toLoc])
 			{
 				return false;
 			}
@@ -54,6 +54,7 @@ registerNamespace("LyricParser", function (ns)
 			if (this.hasAttribute("dataId"))
 			{
 				this.dataId = this.getAttribute("dataId");
+				this.data = this.data || {};
 			}
 			else
 			{

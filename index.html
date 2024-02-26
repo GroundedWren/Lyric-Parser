@@ -26,7 +26,10 @@
 
 	<script src="./scripts/index.js"></script>
 	<script src="./scripts/BoundElement.js"></script>
+	<script src="./scripts/CardBE.js"></script>
+	<script src="./scripts/BELink.js"></script>
 	<script src="./scripts/Release.js"></script>
+	<script src="./scripts/Track.js"></script>
 </head>
 <body>
 	<div id="subveil">
@@ -50,18 +53,18 @@
 		</header>
 		<main id="mainContent">
 			<section aria-labelledby="hReleases">
-				<div class="sec-btn-header">
+				<div class="btn-header">
 					<h2 id="hReleases">Releases</h2>
 					<button onclick="LyricParser.Pages.Index.addRelease()">Add Release</button>
 				</div>
 				<div id="releaseContainer" class="element-list"></div>
 			</section>
-			<section aria-labelledby="hSongs">
-				<div class="sec-btn-header">
-					<h2 id="hSongs">Songs</h2>
-					<button onclick="LyricParser.Pages.Index.addSong()">Add Song</button>
+			<section aria-labelledby="hTracks">
+				<div class="btn-header">
+					<h2 id="hTracks">Tracks</h2>
+					<button onclick="LyricParser.Pages.Index.addTrack()">Add Track</button>
 				</div>
-				<div id="songContainer" class="element-list"></div>
+				<div id="trackContainer" class="element-list"></div>
 			</section>
 		</main>
 		<section id="dialogRegion" aria-label="dialogs"></section>

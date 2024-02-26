@@ -18,11 +18,6 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 			);
 		}
 	};
-	function fullReload()
-	{
-		window.onbeforeunload = () => { };
-		window.location.href = window.location.href
-	}
 
 	ns.loadDiscography = function loadDiscography()
 	{
@@ -35,10 +30,26 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 			confirmPopup(
 				"Load Discography",
 				"Load a new discography? All unsaved changes will be lost",
-				loadDiscographyFromFile
+				clearAndLoad
 			);
 		}
 	};
+
+	function fullReload()
+	{
+		window.onbeforeunload = () => { };
+		window.location.href = window.location.href;
+	}
+	function clearAndLoad()
+	{
+		delete LyricParser.Data;
+		Object.values(LyricParser.BoundElement.instanceMap).forEach(boundEl => boundEl.remove());
+		LyricParser.BoundElement.instanceCount = 0;
+		LyricParser.BoundElement.instanceMap = {};
+
+		loadDiscographyFromFile();
+	}
+
 	function confirmPopup(titleMsg, message, onConfirm)
 	{
 		const doConfirm = () =>
@@ -77,6 +88,7 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 		document.getElementById("confirmBtn").onclick = doConfirm;
 		document.getElementById("abortBtn").onclick = doAbort;
 	}
+
 	function loadDiscographyFromFile()
 	{
 		Common.FileLib.getFileFromUserAsObject(
@@ -89,6 +101,7 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 			".json"
 		);
 	}
+
 	function renderData()
 	{
 		LyricParser.Data = LyricParser.Data || {};
@@ -96,11 +109,17 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 
 		setSaveTime(new Date(LyricParser.Data.Meta["Last Save"]));
 
+		const trackContainer = document.getElementById("trackContainer");
+		Object.keys(LyricParser.Data.Tracks).forEach(trackDataId =>
+		{
+			trackContainer.insertAdjacentHTML("beforeend", `<gw-track dataId="${trackDataId}" startclosed="true"></gw-track>`);
+		});
+
 		//KJA TODO sort?
 		const releaseContainer = document.getElementById("releaseContainer");
 		Object.keys(LyricParser.Data.Releases).forEach(releaseDataId =>
 		{
-			releaseContainer.insertAdjacentHTML("beforeend", `<gw-release dataId=${releaseDataId}></gw-release>`)
+			releaseContainer.insertAdjacentHTML("beforeend", `<gw-release dataId="${releaseDataId}" startclosed="true"></gw-release>`);
 		});
 	}
 
@@ -133,13 +152,45 @@ registerNamespace("LyricParser.Pages.Index", function (ns)
 
 	ns.addRelease = function addRelease()
 	{
-		document.getElementById("releaseContainer").insertAdjacentHTML("beforeend", `
-		<gw-release></gw-release>
-		`);
+		const relEl = Common.DOMLib.crEl({
+			tag: "gw-release",
+			parent: document.getElementById("releaseContainer")
+		});
+
+		if (relEl.focusAnchor)
+		{
+			relEl.focusAnchor.focus();
+		}
 	};
-	ns.addSong = function addSong()
+	ns.addTrack = (name) =>
 	{
-		
+		LyricParser.Data = LyricParser.Data || {};
+		LyricParser.Data.Tracks = LyricParser.Data.Tracks || {};
+		LyricParser.Data.Tracks[name] = { Name: name };
+
+		const trackEl = Common.DOMLib.crEl({
+			tag: "gw-track",
+			parent: document.getElementById("trackContainer"),
+			attrs: { dataId: name }
+		});
+
+		if (trackEl.focusAnchor)
+		{
+			trackEl.focusAnchor.focus();
+		}
+
+		return trackEl;
+	};
+	ns.onLinkTrack = (trackEl) =>
+	{
+		if (!trackEl) { return; }
+
+		document.getElementById("trackContainer").prepend(trackEl);
+
+		if (trackEl.focusAnchor)
+		{
+			trackEl.focusAnchor.focus();
+		}
 	};
 });
 

@@ -48,13 +48,28 @@ main > section {
 	padding: 5px;
 }
 
-.sec-btn-header {
+.btn-header {
 	width: 100%;
 	display: flex;
 }
 
-.sec-btn-header > :not(button) {
+.btn-header.compact {
+	width: auto;
+	gap: 5px;
+	align-items: baseline;
+}
+
+.btn-header.card-header {
+	width: auto;
+}
+
+.btn-header > :not(button) {
 	flex-grow: 1;
+	margin: 0;
+}
+
+.btn-header.compact > * {
+	flex-grow: 0;
 }
 
 h2, h3 {
@@ -75,4 +90,17 @@ h2, h3 {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 5px;
+	align-items: center;
+}
+
+.input-list-line button {
+	min-height: 25px;
+}
+
+.card-line {
+	margin-bottom: 5px;
+}
+
+.card-line + .btn-header {
+	margin-top: 15px;
 }
