@@ -10,7 +10,6 @@ registerNamespace("LyricParser", function (ns)
 		{
 			super();
 
-			this.lastValidName = "";
 			this.trackIncrement = 0;
 		}
 
@@ -168,8 +167,8 @@ registerNamespace("LyricParser", function (ns)
 					<gw-be-link
 						inputElId=${trackId}
 						networkedBEName="gw-track"
-						createDelegate="LyricParser.Pages.Index.addTrack"
-						linkDelegate="LyricParser.Pages.Index.onLinkTrack"
+						createDelegate="LyricParser.Pages.Builder.addTrack"
+						linkDelegate="LyricParser.Pages.Builder.onLinkTrack"
 					></gw-be-link>
 					<button id=${trackId}-del><gw-icon iconKey="trash" title="delete"></gw-icon></button>
 				</div>

@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<meta name="description" content="Tools for interpereting a discography">
-	<title>Lyric Parser</title>
+	<meta name="description" content="Displays a parsed discography">
+	<title>Discography Reader</title>
 
 	<!-- Styles -->
 	<link rel="stylesheet" href="./common/css/main.css" type="text/css" />
 	<link rel="stylesheet" href="./common/css/Controls.css" type="text/css" />
 
 	<link rel="stylesheet" href="./styles/Shared.css" type="text/css" />
-	<link rel="stylesheet" href="./styles/index.css" type="text/css" />
+	<link rel="stylesheet" href="./styles/Reader.css" type="text/css" />
 
 	<!-- Scripts -->
 	<script src="./common/scripts/main.js"></script>
@@ -26,7 +26,8 @@
 	<script src="./common/scripts/Controls/Dialog.js"></script>
 	<script src="./common/scripts/Controls/Modal.js"></script>
 
-	<script src="./scripts/index.js"></script>
+	<script src="./scripts/Reader.js"></script>
+	<script src="./scripts/PorterStemmer1980.js"></script>
 
 </head>
 <body>
@@ -34,36 +35,26 @@
 		<header class="three-header">
 			<div class="three-header-left">
 				<a class="hide-until-focus" href="#mainContent">Skip to content</a>
+				<button id="shortcutsButton"
+						onclick="Common.Components.displayShortcuts('shortcutsButton')">
+					<u>S</u>hortcuts
+				</button>
+				<nav class="breadcrumb">
+					<ol>
+						<li><a href="../index.html">Index</a></li>
+						<li><a href="../Reader.html" aria-current="page">Reader</a></li>
+					</ol>
+				</nav>
 			</div>
 			<div>
-				<h1>Lyric Parser</h1>
-				<span class="subtitle">A <a href="https://groundedwren.com" target="_blank">Grounded Wren</a> Project</span>
+				<h1>Discography Reader</h1>
 			</div>
 			<div class="three-header-right">
+				
 			</div>
 		</header>
-		<nav>
-			<ul id="topNav">
-				<li>
-					<a href="./Builder.html">
-						Builder<br />
-						<gw-icon iconKey="hammer" aria-hidden="true"></gw-icon>
-					</a>
-				</li>
-				<li>
-					<a href="./Reader.html">
-						Reader
-						<br />
-						<gw-icon iconKey="book" aria-hidden="true"></gw-icon>
-					</a>
-				</li>
-			</ul>
-		</nav>
 		<main id="mainContent">
-			<h2>Info</h2>
-			<h2>Pages</h2>
-			<h3>Builder</h3>
-			<h3>Reader</h3>
+			
 		</main>
 		<section id="dialogRegion" aria-label="dialogs"></section>
 	</div>

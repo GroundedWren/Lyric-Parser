@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-ocean">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Discography Builder tool">
+	<title>Discography Builder</title>
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="./common/css/main.css" type="text/css" />
+	<link rel="stylesheet" href="./common/css/Controls.css" type="text/css" />
+
+	<link rel="stylesheet" href="./styles/Shared.css" type="text/css" />
+	<link rel="stylesheet" href="./styles/Builder.css" type="text/css" />
+
+	<!-- Scripts -->
+	<script src="./common/scripts/main.js"></script>
+
+	<script src="./common/scripts/Common.js"></script>
+	<script src="./common/scripts/DOMLib.js"></script>
+	<script src="./common/scripts/SVGLib.js"></script>
+	<script src="./common/scripts/FileLib.js"></script>
+	<script src="./common/scripts/Components/Shortcuts.js"></script>
+	<script src="./common/scripts/Components/ElementDragger.js"></script>
+	<script src="./common/scripts/Controls/Dialog.js"></script>
+	<script src="./common/scripts/Controls/Modal.js"></script>
+
+	<script src="./common/scripts/Components/BoundElement.js"></script>
+	<script src="./common/scripts/Components/CardBE.js"></script>
+	<script src="./common/scripts/Controls/BELink.js"></script>
+
+	<script src="./scripts/Builder.js"></script>
+	<script src="./scripts/Release.js"></script>
+	<script src="./scripts/Track.js"></script>
+	<script src="./scripts/PorterStemmer1980.js"></script>
+	<script src="./scripts/StopWords.js"></script>
+</head>
+<body>
+	<div id="subveil">
+		<header class="three-header">
+			<div class="three-header-left">
+				<a class="hide-until-focus" href="#mainContent">Skip to content</a>
+				<button id="shortcutsButton"
+						onclick="Common.Components.displayShortcuts('shortcutsButton')">
+					<u>S</u>hortcuts
+				</button>
+				<nav class="breadcrumb">
+					<ol>
+						<li><a href="../index.html">Index</a></li>
+						<li><a href="../Builder.html" aria-current="page">Builder</a></li>
+					</ol>
+				</nav>
+			</div>
+			<div>
+				<h1>Discography Builder</h1>
+				<label for="txtArtist">Artist: </label>
+				<input id="txtArtist" type="text" />
+			</div>
+			<div class="three-header-right">
+				<div id="metaButtons">
+					<button id="newButton" onclick="LyricParser.Pages.Builder.newDiscography()">New (Alt+1)</button>
+					<button id="loadButton" onclick="LyricParser.Pages.Builder.loadDiscography()">Load (Alt+2)</button>
+					<button id="saveButton" onclick="LyricParser.Pages.Builder.saveDiscography()">Save (Alt+3)</button>
+				</div>
+				<span>Last save: <time id="txtDate">-</time></span>
+			</div>
+		</header>
+		<main id="mainContent">
+			<section aria-labelledby="hReleases">
+				<div class="btn-header">
+					<h2 id="hReleases">Releases</h2>
+					<button onclick="LyricParser.Pages.Builder.addRelease()">Add Release</button>
+				</div>
+				<div id="releaseContainer" class="element-list"></div>
+			</section>
+			<section aria-labelledby="hTracks">
+				<div class="btn-header">
+					<h2 id="hTracks">Tracks</h2>
+					<button onclick="LyricParser.Pages.Builder.addTrack()">Add Track</button>
+				</div>
+				<div id="trackContainer" class="element-list"></div>
+			</section>
+		</main>
+		<section id="dialogRegion" aria-label="dialogs"></section>
+	</div>
+</body>
+</html>

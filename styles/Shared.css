@@ -1,0 +1,26 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+}
+
+header button {
+	border-radius: 20px;
+	min-height: 35px;
+}
+
+nav.breadcrumb a {
+	padding: 6px;
+	border-radius: 20px;
+	background-color: var(--accent-color);
+	color: var(--heading-color);
+}
+
+.three-header-left {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	align-items: center;
+}

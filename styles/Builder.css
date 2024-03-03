@@ -1,0 +1,82 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+}
+
+h1 {
+	margin: 5px;
+}
+
+#subveil {
+	display: flex;
+	flex-direction: column;
+}
+
+.three-header-right {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+#metaButtons {
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+}
+
+main {
+	flex-grow: 1;
+	min-height: 0;
+	display: flex;
+	gap: 5px;
+	flex-wrap: wrap;
+}
+
+main > section {
+	flex-grow: 1;
+	min-width: 300px;
+	min-height: 0px;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--content-color);
+	padding: 5px;
+	flex-basis: 500px;
+	flex-shrink: 1;
+}
+
+h2, h3 {
+	margin: 0;
+}
+
+.element-list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	overflow-y: auto;
+	margin-top: 5px;
+}
+
+.input-list-line {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	align-items: center;
+}
+
+.input-list-line button {
+	min-height: 25px;
+}
+
+.card-line {
+	margin-bottom: 5px;
+}
+
+.card-line + .btn-header {
+	margin-top: 15px;
+}

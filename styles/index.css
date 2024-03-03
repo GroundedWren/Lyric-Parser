@@ -1,84 +1,57 @@
-*, *::before, *::after {
-	box-sizing: border-box;
-}
-
-body{
-	height: 100vh;
-}
-
-#subveil {
-	display: flex;
-	flex-direction: column;
-}
-
-header button {
-	border-radius: 20px;
-	min-height: 35px;
-}
-
-.three-header-right{
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-
-#metaButtons {
-	display: flex;
-	flex-direction: row;
-	gap: 5px;
-}
-
 main {
-	flex-grow: 1;
-	min-height: 0;
-
-	display: flex;
-	gap: 5px;
-	flex-wrap: wrap;
-}
-
-main > section {
-	flex-grow: 1;
-	min-width: 300px;
-	min-height: 0px;
-	max-height: 100%;
-	display: flex;
-	flex-direction: column;
+	max-width: 1100px;
 	background-color: var(--content-color);
+	margin: auto;
 	padding: 5px;
-	flex-basis: 500px;
-	flex-shrink: 1;
 }
 
-h2, h3 {
-	margin: 0;
+h1 {
+	margin-bottom: 0px;
 }
 
-.element-list {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	overflow-y: auto;
-	margin-top: 5px;
+.subtitle {
+	font-style: italic;
+	font-size: 0.9em;
 }
 
-.input-list-line {
-	margin-top: 4px;
-	margin-bottom: 4px;
-	display: flex;
+h2, h3, h4, h5, h6 {
+	margin-top: 0px;
+}
+
+nav {
+	margin: 10px;
+}
+
+#topNav {
+	display: flex !important;
+	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 5px;
-	align-items: center;
+	gap: 10px;
+	padding: 0px;
+	margin: 0px;
+	justify-content: center;
+	align-items: baseline;
 }
 
-.input-list-line button {
-	min-height: 25px;
+#topNav a {
+	display: inline-block;
+	width: 100%;
+	padding: 10px;
+	border-radius: 20px;
+	background-color: var(--accent-color);
+	color: var(--heading-color);
 }
 
-.card-line {
+nav ul {
+	display: block;
+	padding: 0px;
+	margin: 0px;
+}
+
+nav li {
+	display: block;
+	min-height: 30px;
 	margin-bottom: 5px;
-}
-
-.card-line + .btn-header {
-	margin-top: 15px;
+	text-align: center;
+	flex-grow: 1;
 }

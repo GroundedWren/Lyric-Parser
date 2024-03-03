@@ -5,8 +5,6 @@ registerNamespace("LyricParser", function (ns)
 		constructor()
 		{
 			super();
-
-			this.lastValidName = "";
 		}
 
 		get boundElementName()
