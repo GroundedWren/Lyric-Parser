@@ -28,6 +28,7 @@
 	<script src="./common/scripts/Controls/PageControl.js"></script>
 	<script src="./common/scripts/Controls/ZeroState.js"></script>
 
+	<script src="./scripts/ReleaseDisplay.js"></script>
 	<script src="./scripts/Reader.js"></script>
 	<script src="./scripts/PorterStemmer1980.js"></script>
 
@@ -79,13 +80,14 @@
 				</div>
 				<div id="mainPageCtrl_pgc" class="page-container">
 					<div id="mainPageCtrl_page_Releases" class="page-control-page">
-						Releases
+						<h2 class="sr-only">Releases</h2>
+						<ol id="releaseList"></ol>
 					</div>
 					<div id="mainPageCtrl_page_Tracks" class="page-control-page">
-						Tracks
+						<h2 class="sr-only">Tracks</h2>
 					</div>
 					<div id="mainPageCtrl_page_Search" class="page-control-page">
-						Search
+						<h2 class="sr-only">Search</h2>
 					</div>
 				</div>
 			</div>

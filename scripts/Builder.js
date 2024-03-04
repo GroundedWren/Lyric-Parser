@@ -159,7 +159,7 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 					const words = lines[lineNum].split(" ");
 					for (let wordNum = 0; wordNum < words.length; wordNum++)
 					{
-						const word = words[wordNum].toLowerCase().replace(/\u003f|!|\u002e|,/g, "");
+						const word = words[wordNum].toLowerCase().replace(/\u003f|!|\u002e|,|\u0022/g, "");
 						const stemmedWord = stemmer(word);
 
 						const indexEntry = LyricParser.Data.WordIndex[stemmedWord] || [];
