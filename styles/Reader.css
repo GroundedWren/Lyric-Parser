@@ -47,6 +47,10 @@ main {
 	flex-grow: 1;
 }
 
+gw-release-display {
+	display: block;
+}
+
 gw-release-display .card-header {
 	display: flex;
 	flex-direction: row;
