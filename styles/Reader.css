@@ -72,4 +72,5 @@ gw-release-display .card-header {
 
 .release-content img {
 	max-height: 500px;
+	width: 100%;
 }
