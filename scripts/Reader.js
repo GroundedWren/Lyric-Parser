@@ -30,7 +30,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 	ns.discographyUploaded = (discObj) =>
 	{
 		LyricParser.Pages.Reader.mainPageCtrl.enableTabs();
-		LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Collections");
+		LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Releases");
 	};
 });
 
@@ -50,7 +50,7 @@ window.onload = () =>
 		document.getElementById("mainPageCtrl_ts"),
 		document.getElementById("mainPageCtrl_pgc"),
 		{
-			"mainPageCtrl_tab_Collections": document.getElementById("mainPageCtrl_page_Collections"),
+			"mainPageCtrl_tab_Releases": document.getElementById("mainPageCtrl_page_Releases"),
 			"mainPageCtrl_tab_Tracks": document.getElementById("mainPageCtrl_page_Tracks"),
 			"mainPageCtrl_tab_Search": document.getElementById("mainPageCtrl_page_Search"),
 		},
