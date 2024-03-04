@@ -1,3 +1,38 @@
 *, *::before, *::after {
 	box-sizing: border-box;
 }
+
+#subveil {
+	display: flex;
+	flex-direction: column;
+}
+
+h1 {
+	margin: 0;
+}
+
+.three-header-right {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	min-width: 300px;
+}
+
+main {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+#mainPageCtrl {
+	flex-grow: 1;
+}
+
+#mainPageCtrl_pgc {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+#mainPageCtrl_pgc > * {
+	flex-grow: 1;
+}
