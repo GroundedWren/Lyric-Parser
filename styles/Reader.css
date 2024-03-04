@@ -15,11 +15,19 @@ h1, h2, h3 {
 	margin: 0;
 }
 
+.three-header {
+	margin-bottom: 5px;
+}
+
 .three-header-right {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	min-width: 300px;
+}
+
+.three-header-right .input-vertical {
+	align-items: center;
 }
 
 main {
