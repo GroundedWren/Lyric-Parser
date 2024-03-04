@@ -29,6 +29,7 @@
 	<script src="./common/scripts/Controls/ZeroState.js"></script>
 
 	<script src="./scripts/ReleaseDisplay.js"></script>
+	<script src="./scripts/TrackDisplay.js"></script>
 	<script src="./scripts/Reader.js"></script>
 	<script src="./scripts/PorterStemmer1980.js"></script>
 
@@ -66,28 +67,31 @@
 					   accept=".json"
 					   aria-labelledby="lblDiscography"
 					   class="hidden"
-					   onchange="LyricParser.Pages.Reader.onFileUpload(event)"
-				/>
+					   onchange="LyricParser.Pages.Reader.onFileUpload(event)" />
 			</div>
 		</header>
 		<main id="mainContent">
 			<div id="mainPageCtrl" class="page-control">
 				<div id="mainPageCtrl_ts" class="tab-strip">
-					<button id="mainPageCtrl_tab_Releases" class="tab-strip-tab">Releases</button>
-					<button id="mainPageCtrl_tab_Tracks" class="tab-strip-tab">Tracks</button>
-					<button id="mainPageCtrl_tab_Search" class="tab-strip-tab">Search</button>
+					<button id="mainPageCtrl_tab_Releases" class="tab-strip-tab"><u>R</u>eleases</button>
+					<button id="mainPageCtrl_tab_Tracks" class="tab-strip-tab"><u>T</u>racks</button>
+					<button id="mainPageCtrl_tab_Search" class="tab-strip-tab">Se<u>a</u>rch</button>
 					<div id="mainPageCtrl_gutter" class="tab-gutter"></div>
 				</div>
 				<div id="mainPageCtrl_pgc" class="page-container">
 					<div id="mainPageCtrl_page_Releases" class="page-control-page">
-						<h2 class="sr-only">Releases</h2>
-						<ol id="releaseList"></ol>
+						<h2 id="hReleases" class="sr-only">Releases</h2>
+						<ol id="releaseList" aria-labelledby="hReleases"></ol>
 					</div>
 					<div id="mainPageCtrl_page_Tracks" class="page-control-page">
-						<h2 class="sr-only">Tracks</h2>
+						<h2 id="hTracks" class="sr-only">Tracks</h2>
+						<ul id="trackList" aria-labelledby="hTracks"></ul>
 					</div>
 					<div id="mainPageCtrl_page_Search" class="page-control-page">
 						<h2 class="sr-only">Search</h2>
+						<div id="warningBanner" class="inline-banner center warning">
+							<gw-icon iconKey="triangle-exclamation">Not yet implemented :(</gw-icon>
+						</div>
 					</div>
 				</div>
 			</div>

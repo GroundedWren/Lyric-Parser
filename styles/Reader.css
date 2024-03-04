@@ -11,7 +11,7 @@ body {
 	flex-direction: column;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 }
 
@@ -55,6 +55,16 @@ main {
 	flex-grow: 1;
 }
 
+.card:focus .card-header {
+	color: var(--accent-color);
+	background-color: var(--heading-color);
+}
+
+.card:focus .card-header::after {
+	content: "<";
+	color: var(--accent-color);
+}
+
 gw-release-display {
 	display: block;
 }
@@ -81,4 +91,33 @@ gw-release-display .card-header {
 .release-content img {
 	max-height: 500px;
 	width: 100%;
+}
+
+#trackList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	list-style: none;
+	justify-content: center;
+}
+
+gw-track-display h4:not(:nth-of-type(1)) {
+	margin-top: 3px;
+}
+
+gw-track-display h5 {
+	margin-top: 4px;
+}
+
+.disp-line {
+	margin-left: 4px;
+}
+
+.disp-line label {
+	font-weight: lighter;
+	font-size: 0.9em;
+}
+
+sup {
+	font-size: 0.8em;
 }

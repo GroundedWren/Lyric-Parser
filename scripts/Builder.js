@@ -113,9 +113,9 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 			trackContainer.insertAdjacentHTML("beforeend", `<gw-track dataId="${trackDataId}" startclosed="true"></gw-track>`);
 		});
 
-		//KJA TODO sort?
 		const releaseContainer = document.getElementById("releaseContainer");
-		Object.keys(LyricParser.Data.Releases).forEach(releaseDataId =>
+		const sortedReleaseKeys = sortReleaseKeys();
+		sortedReleaseKeys.forEach(releaseDataId =>
 		{
 			releaseContainer.insertAdjacentHTML("beforeend", `<gw-release dataId="${releaseDataId}" startclosed="true"></gw-release>`);
 		});
@@ -129,6 +129,25 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 		LyricParser.Data.Meta = LyricParser.Data.Meta || {};
 
 		buildIndex();
+
+		LyricParser.Data.SortedReleaseList = sortReleaseKeys();
+		LyricParser.Data.SortedReleaseList.forEach(releaseTitle =>
+		{
+			LyricParser.Data.Releases[releaseTitle].Tracks.forEach(trackTitle =>
+			{
+				LyricParser.Data.Tracks[trackTitle].OrderedReleases =
+					LyricParser.Data.Tracks[trackTitle].OrderedReleases || [];
+				LyricParser.Data.Tracks[trackTitle].OrderedReleases.push(releaseTitle);
+			});
+		});
+
+		Object.keys(LyricParser.Data.Tracks).forEach(trackName =>
+		{
+			const lyrics = LyricParser.Data.Tracks[trackName].LyricsText;
+			LyricParser.Data.Tracks[trackName].Stanzas = lyrics.split("\n\n").map(
+				stanza => stanza.split("\n").map(line => line.split(" "))
+			);
+		});
 
 		LyricParser.Data.Meta["Last Save"] = new Date();
 		LyricParser.Data.Meta.Artist = document.getElementById("txtArtist").value || "";
@@ -188,6 +207,15 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 			}
 
 			LyricParser.Data.TrackWords[trackObj.Name] = trackEntry;
+		});
+	}
+	function sortReleaseKeys()
+	{
+		return Object.keys(LyricParser.Data.Releases).sort((a, b) =>
+		{
+			const relA = LyricParser.Data.Releases[a];
+			const relB = LyricParser.Data.Releases[b];
+			return parseInt(relA.Year + relA.Month) - parseInt(relB.Year + relB.Month);
 		});
 	}
 	function setSaveTime(saveDateTime)

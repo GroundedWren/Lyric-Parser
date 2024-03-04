@@ -10,8 +10,10 @@ registerNamespace("LyricParser", function (ns)
 		//#region instance properties
 		instanceId;
 		data;
+		datetime;
 
 		//#region element properties
+		articleEl;
 		//#endregion
 		//#endregion
 
@@ -43,9 +45,13 @@ registerNamespace("LyricParser", function (ns)
 		{
 			//Markup
 			this.innerHTML = `
-			<article class="card" aria-labelledby="${this.idKey}-hTitle">
+			<article	id="${this.idKey}-article"
+						class="card"
+						aria-labelledby="${this.idKey}-hTitle"
+						tabindex="-1"
+			>
 				<div class="card-header">
-					<h3 id=${this.idKey}-hTitle>${this.title}</h3>
+					<h3 id="${this.idKey}-hTitle">${this.title}</h3>
 					<time class="header-time" datetime="${this.datetime.toISOString()}">
 						${this.datetime.toLocaleDateString(undefined, { year: 'numeric', month: 'long' }) }
 					</time>
@@ -72,7 +78,14 @@ registerNamespace("LyricParser", function (ns)
 			const trackList = document.getElementById(`${this.idKey}-trackList`);
 			this.data.Tracks.forEach(trackName =>
 			{
-				trackList.insertAdjacentHTML("beforeend", `<li>${trackName}</li>`); //KJA TODO add link
+				trackList.insertAdjacentHTML(
+					"beforeend",
+					`<li>
+						<a	href="javascript:void(0)"
+							onclick="LyricParser.Pages.Reader.linkTrack('${trackName}')"
+						>${trackName}</a>
+					</li>`
+				);
 			});
 
 			const topWordList = document.getElementById(`${this.idKey}-topWordList`);
@@ -101,11 +114,16 @@ registerNamespace("LyricParser", function (ns)
 			{
 				topWordList.insertAdjacentHTML(
 					"beforeend",
-					`<li>${sortedCollectionWords[i]} - ${collectionWords[sortedCollectionWords[i]]}</li>`
-				); //KJA TODO add link
+					`<li>
+						<a	href="javascript:void(0)"
+							onclick="LyricParser.Pages.Reader.searchString('${sortedCollectionWords[i]}')"
+						>${sortedCollectionWords[i]}<sup>${collectionWords[sortedCollectionWords[i]]}</sup>
+						</a></li>`
+				);
 			}
 
 			//element properties
+			this.articleEl = document.getElementById(`${this.idKey}-article`);
 		}
 
 		//#region Handlers
