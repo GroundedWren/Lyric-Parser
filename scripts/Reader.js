@@ -1,6 +1,8 @@
 registerNamespace("LyricParser.Pages.Reader", function (ns)
 {
-	ns.urlParamMap = { "Iron & Wine": "./data/Iron_and_Wine.json" };
+	ns.urlParamMap = {
+		"Iron & Wine": "./data/Iron_and_Wine.json"
+	};
 	ns.interperetUrlParams = (searchParams) =>
 	{
 		if (searchParams.has("Discography"))
@@ -53,8 +55,10 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 
 		window.history.replaceState(null, "", `?Discography=${encodeURIComponent(discObj.Meta.Artist)}`);
 		LyricParser.Pages.Reader.mainPageCtrl.enableTabs();
-		if (LyricParser.Pages.Reader.mainPageCtrl !== "mainPageCtrl_tab_Releases")
-		LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Releases", undefined, true);
+		if (LyricParser.Pages.Reader.mainPageCtrl.activeTabId !== "mainPageCtrl_tab_Releases")
+		{
+			LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Releases", undefined, true);
+		}
 	};
 	function renderReleases()
 	{
@@ -91,14 +95,14 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		if (!articleEl)
 		{
 			alert("Release not found");
-			return
+			return;
 		}
 
 		LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Releases", undefined, true);
 		articleEl.scrollIntoView();
 		Common.axAlertPolite("Release selected");
 		articleEl.focus({ focusVisible: true });
-		
+
 	};
 
 	ns.linkTrack = (trackTitle) =>
@@ -118,10 +122,73 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		articleEl.focus({ focusVisible: true });
 	};
 
+	ns.onSearchSubmit = (event) =>
+	{
+		event.preventDefault();
+		ns.searchString(document.getElementById("txtSearch").value);
+	};
+
 	ns.searchString = (string) =>
 	{
-		alert(`Todo! Search "${string}"`);
-	}
+		const resultList = document.getElementById("searchResultList");
+		resultList.innerHTML = "";
+		document.getElementById("txtSearch").value = string;
+
+		LyricParser.Pages.Reader.mainPageCtrl.enableTabs();
+		if (LyricParser.Pages.Reader.mainPageCtrl.activeTabId !== "mainPageCtrl_tab_Search")
+		{
+			LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Search", undefined, true);
+		}
+
+		const searchWords = string.split(" ");
+		const stmdSearchWrds = searchWords.map(
+			word => stemmer(word.toLowerCase().replace(/\u003f|!|\u002e|,|\u0022/g, ""))
+		).filter((val, idx, ary) => ary.indexOf(val) === idx);
+
+		const resultMap = {};
+		stmdSearchWrds.forEach(word =>
+		{
+			LyricParser.Data.WordIndex[word].forEach(indexEntry =>
+			{
+				const entryKey = `${indexEntry.nm}-${indexEntry.sn}`;
+				resultMap[entryKey] = resultMap[entryKey] || [];
+
+				const nearbyResults = resultMap[entryKey].filter(resultObj =>
+				{
+					return (Math.abs(resultObj.min - indexEntry.ln) <= 2)
+						|| (Math.abs(resultObj.max - indexEntry.ln) <= 2);
+				});
+				if (nearbyResults.length)
+				{
+					nearbyResults.forEach(nearbyResult =>
+					{
+						nearbyResult.entries += " " + `${indexEntry.ln}-${indexEntry.wn}`;
+						nearbyResult.min = Math.min(nearbyResult.min, indexEntry.ln);
+						nearbyResult.max = Math.max(nearbyResult.max, indexEntry.ln);
+					});
+				}
+				else
+				{
+					resultMap[entryKey].push({
+						min: indexEntry.ln,
+						max: indexEntry.ln,
+						entries: `${indexEntry.ln}-${indexEntry.wn}`,
+						nm: indexEntry.nm,
+						sn: indexEntry.sn
+					});
+				}
+			});
+		});
+
+		const results = Object.values(resultMap).reduce((acc, val) => { return acc.concat(val); }, []).sort(
+			(a, b) => b.entries.length - a.entries.length
+		);
+
+		resultList.innerHTML = results.reduce(
+			(acc, val) => acc + `<li><gw-result nm="${val.nm}" sn="${val.sn}" entries="${val.entries}"></gw-result></li>`,
+			""
+		);
+	};
 });
 
 window.onload = () =>
@@ -129,10 +196,6 @@ window.onload = () =>
 	Common.loadTheme();
 	Common.setUpAccessibility();
 	Common.Components.registerShortcuts({
-		"ALT+S": {
-			action: () => { document.getElementById("shortcutsButton").click(); },
-			description: "Show shortcut keys"
-		},
 		"ALT+R": {
 			action: () => { document.getElementById("mainPageCtrl_tab_Releases").click(); },
 			description: "Show releases"
@@ -144,6 +207,10 @@ window.onload = () =>
 		"ALT+A": {
 			action: () => { document.getElementById("mainPageCtrl_tab_Search").click(); },
 			description: "Show search"
+		},
+		"ALT+S": {
+			action: () => { document.getElementById("shortcutsButton").click(); },
+			description: "Show shortcut keys"
 		},
 	});
 

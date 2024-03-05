@@ -30,6 +30,7 @@
 
 	<script src="./scripts/ReleaseDisplay.js"></script>
 	<script src="./scripts/TrackDisplay.js"></script>
+	<script src="./scripts/Result.js"></script>
 	<script src="./scripts/Reader.js"></script>
 	<script src="./scripts/PorterStemmer1980.js"></script>
 
@@ -88,10 +89,23 @@
 						<ul id="trackList" aria-labelledby="hTracks"></ul>
 					</div>
 					<div id="mainPageCtrl_page_Search" class="page-control-page">
-						<h2 class="sr-only">Search</h2>
-						<div id="warningBanner" class="inline-banner center warning">
-							<gw-icon iconKey="triangle-exclamation">Not yet implemented :(</gw-icon>
-						</div>
+						<form id="searchForm"
+							  class="transparent-form"
+							  aria-labelledby="lblSearch"
+							  autocomplete="=off"
+							  onsubmit="LyricParser.Pages.Reader.onSearchSubmit(event)"
+						>
+							<div class="input-flex-line">
+								<label id="lblSearch" for="txtSearch" role="heading" aria-level="2">Search</label>
+								<input id="txtSearch" type="text" />
+								<input id="searchSubmit" type="submit" value="Search" />
+							</div>
+						</form>
+						<section aria-labelledby="hResults">
+							<h3 id="hResults">Results</h3>
+							<ol id="searchResultList">
+							</ol>
+						</section>
 					</div>
 				</div>
 			</div>
