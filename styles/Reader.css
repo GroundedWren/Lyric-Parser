@@ -50,6 +50,7 @@ main {
 	flex-direction: column;
 	height: 100%;
 	min-height: 0;
+	background-color: var(--content-color);
 }
 #mainPageCtrl_pgc > * {
 	flex-grow: 1;
@@ -131,4 +132,44 @@ gw-track-display h5 {
 
 sup {
 	font-size: 0.8em;
+}
+
+#searchForm {
+	padding: 10px;
+	max-width: 500px;
+	margin: auto;
+}
+
+#lblSearch {
+	flex-grow: 0;
+	word-break: break-all;
+}
+
+#txtSearch {
+	flex-grow: 1;
+	height: 1.5em;
+	border-radius: 20px;
+	padding-left: 10px;
+}
+
+#searchSubmit {
+	margin-left: 5px;
+	align-self: stretch;
+	border-radius: 20px;
+}
+
+#hResults {
+	text-align: center;
+}
+
+gw-result {
+	display: block;
+}
+
+#searchResultList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+	padding: 0px;
 }
