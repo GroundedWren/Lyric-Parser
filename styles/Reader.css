@@ -93,6 +93,16 @@ gw-release-display .card-header {
 	width: 100%;
 }
 
+.release-content li{
+	padding: 5px;
+}
+
+.release-content a {
+	padding: 3px;
+	background-color: var(--accent-color);
+	border-radius: 20px;
+}
+
 #trackList {
 	display: flex;
 	flex-direction: row;
