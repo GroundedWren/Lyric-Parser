@@ -90,7 +90,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 	ns.linkRelease = (releaseTitle) =>
 	{
 		const articleEl = Object.values(LyricParser.ReleaseDisplayEl.instanceMap).filter(
-			releaseDispEl => releaseDispEl.title === releaseTitle
+			releaseDispEl => releaseDispEl.title.replace(/'/g, "") === releaseTitle
 		)[0].articleEl;
 		if (!articleEl)
 		{
@@ -108,7 +108,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 	ns.linkTrack = (trackTitle) =>
 	{
 		const articleEl = Object.values(LyricParser.TrackDisplayEl.instanceMap).filter(
-			trackDispEl => trackDispEl.title === trackTitle
+			trackDispEl => trackDispEl.title.replace(/'/g, "") === trackTitle
 		)[0].articleEl;
 		if (!articleEl)
 		{

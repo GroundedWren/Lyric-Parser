@@ -82,7 +82,7 @@ registerNamespace("LyricParser", function (ns)
 					"beforeend",
 					`<li>
 						<a	href="javascript:void(0)"
-							onclick="LyricParser.Pages.Reader.linkTrack('${trackName}')"
+							onclick="LyricParser.Pages.Reader.linkTrack('${trackName.replace(/'/g, "") }')"
 						>${trackName}</a>
 					</li>`
 				);

@@ -105,7 +105,7 @@ registerNamespace("LyricParser", function (ns)
 							return acc + `
 							<li>
 								<a	href="javascript:void(0)"
-									onclick="LyricParser.Pages.Reader.linkRelease('${releaseTitle}')"
+									onclick="LyricParser.Pages.Reader.linkRelease('${releaseTitle.replace(/'/g, "") }')"
 								>${releaseTitle}</a>
 							</li>
 							`
