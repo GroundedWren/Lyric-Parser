@@ -117,7 +117,7 @@ registerNamespace("LyricParser", function (ns)
 							</select>
 						</div>
 						<div class="input-vertical">
-							<label for="${this.idKey}-txtLink">Link</label>
+							<label for="${this.idKey}-txtLink">Art Link</label>
 							<input id="${this.idKey}-txtLink"
 								type="text"
 								data-owner=${this.idKey}
