@@ -24,3 +24,8 @@ nav.breadcrumb a {
 	gap: 5px;
 	align-items: center;
 }
+
+mark {
+	color: var(--heading-color);
+	background-color: var(--accent-color);
+}
