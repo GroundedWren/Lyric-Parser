@@ -148,6 +148,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		const resultMap = {};
 		stmdSearchWrds.forEach(word =>
 		{
+			if (!LyricParser.Data.WordIndex[word]) { return; }
 			LyricParser.Data.WordIndex[word].forEach(indexEntry =>
 			{
 				const entryKey = `${indexEntry.nm}-${indexEntry.sn}`;
