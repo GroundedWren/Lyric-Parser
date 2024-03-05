@@ -173,3 +173,7 @@ gw-result {
 	list-style: none;
 	padding: 0px;
 }
+
+figcaption {
+	font-size: 0.8em;
+}
