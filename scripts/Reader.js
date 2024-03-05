@@ -188,6 +188,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 			(acc, val) => acc + `<li><gw-result nm="${val.nm}" sn="${val.sn}" entries="${val.entries}"></gw-result></li>`,
 			""
 		);
+		resultList.focus();
 	};
 });
 
