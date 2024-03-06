@@ -219,9 +219,11 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 					nearbyResult.entries += " " + `${indexEntry.ln}-${indexEntry.wn}`;
 					nearbyResult.min = Math.min(nearbyResult.min, indexEntry.ln);
 					nearbyResult.max = Math.max(nearbyResult.max, indexEntry.ln);
-					if (!nearbyResult.foundWords.hasOwnProperty(word))
+
+					nearbyResult.foundWords[indexEntry.ln] = nearbyResult.foundWords[indexEntry.ln] || {};
+					if (!nearbyResult.foundWords[indexEntry.ln].hasOwnProperty(word))
 					{
-						nearbyResult.foundWords[word] = "";
+						nearbyResult.foundWords[indexEntry.ln][word] = "";
 						if (nearbyResult.lineCounts[indexEntry.ln])
 						{
 							nearbyResult.lineCounts[indexEntry.ln]++;
@@ -238,7 +240,8 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 					lineCounts[indexEntry.ln] = 1;
 
 					const foundWords = {};
-					foundWords[word] = "";
+					foundWords[indexEntry.ln] = {};
+					foundWords[indexEntry.ln][word] = "";
 
 					resultMap[entryKey].push({
 						min: indexEntry.ln,
