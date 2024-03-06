@@ -129,6 +129,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		ns.searchString(document.getElementById("txtSearch").value);
 	};
 
+	ns.SEARCH_GROUPING_WINDOW = 2;
 	ns.searchString = (string) =>
 	{
 		const resultList = document.getElementById("searchResultList");
@@ -157,33 +158,56 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 
 				const nearbyResults = resultMap[entryKey].filter(resultObj =>
 				{
-					return (Math.abs(resultObj.min - indexEntry.ln) <= 2)
-						|| (Math.abs(resultObj.max - indexEntry.ln) <= 2);
+					return (Math.abs(resultObj.min - indexEntry.ln) <= ns.SEARCH_GROUPING_WINDOW)
+						|| (Math.abs(resultObj.max - indexEntry.ln) <= ns.SEARCH_GROUPING_WINDOW);
 				});
 				if (nearbyResults.length)
 				{
-					nearbyResults.forEach(nearbyResult =>
+					//There should only ever be one since anything in the window gets absorbed
+					const nearbyResult = nearbyResults[0];
+					nearbyResult.entries += " " + `${indexEntry.ln}-${indexEntry.wn}`;
+					nearbyResult.min = Math.min(nearbyResult.min, indexEntry.ln);
+					nearbyResult.max = Math.max(nearbyResult.max, indexEntry.ln);
+					if (!nearbyResult.foundWords.hasOwnProperty(word))
 					{
-						nearbyResult.entries += " " + `${indexEntry.ln}-${indexEntry.wn}`;
-						nearbyResult.min = Math.min(nearbyResult.min, indexEntry.ln);
-						nearbyResult.max = Math.max(nearbyResult.max, indexEntry.ln);
-					});
+						nearbyResult.foundWords[word] = "";
+						if (nearbyResult.lineCounts[indexEntry.ln])
+						{
+							nearbyResult.lineCounts[indexEntry.ln]++;
+						}
+						else
+						{
+							nearbyResult.lineCounts[indexEntry.ln] = 1;
+						}
+					}
 				}
 				else
 				{
+					const lineCounts = {};
+					lineCounts[indexEntry.ln] = 1;
+
+					const foundWords = {};
+					foundWords[word] = "";
+
 					resultMap[entryKey].push({
 						min: indexEntry.ln,
 						max: indexEntry.ln,
 						entries: `${indexEntry.ln}-${indexEntry.wn}`,
 						nm: indexEntry.nm,
-						sn: indexEntry.sn
+						sn: indexEntry.sn,
+						lineCounts: lineCounts,
+						foundWords: foundWords,
 					});
 				}
 			});
 		});
 
 		const results = Object.values(resultMap).reduce((acc, val) => { return acc.concat(val); }, []).sort(
-			(a, b) => b.entries.length - a.entries.length
+			(a, b) =>
+			{
+				return (Math.max(...Object.values(b.lineCounts)) - Math.max(...Object.values(a.lineCounts)))
+					|| (b.entries.length - a.entries.length);
+			}
 		);
 
 		resultList.innerHTML = results.reduce(
