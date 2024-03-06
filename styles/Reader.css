@@ -220,11 +220,19 @@ figcaption {
 	background-color: var(--content-color-2);
 	max-width: 500px;
 	table-layout: fixed;
+	border: none;
 }
 
-#overviewContent td {
+#overviewContent td, th {
+	border-top: none;
+	border-left: none;
+	border-right: none;
 	padding-top: 5px;
-	padding-bottom: 5px;
+	width: auto;
+}
+
+#overviewContent th {
+	text-align: left;
 }
 
 #hOverviewUncWords {
