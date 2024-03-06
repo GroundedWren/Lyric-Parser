@@ -56,20 +56,20 @@ registerNamespace("LyricParser", function (ns)
 			this.innerHTML = `
 			<article class="card" aria-labelledby="${this.idKey}-hName">
 				${this.get_cardHeader("h3")}
-				<div id=${this.idKey}-togEl>
+				<div id="${this.idKey}-togEl">
 					<div class="input-horizontal-flex card-line">
 						<div class="input-vertical">
 							<label for="${this.idKey}-txtName">Name</label>
 							<input id="${this.idKey}-txtName"
 								type="text"
-								data-owner=${this.idKey}
+								data-owner="${this.idKey}"
 								data-prop="Name"
 							/>
 						</div>
 						<div class="input-vertical">
 							<label for="${this.idKey}-txtLyrics">Lyrics</label>
 							<textarea id="${this.idKey}-txtLyrics"
-								data-owner=${this.idKey}
+								data-owner="${this.idKey}"
 								data-prop="LyricsText"
 								rows="3"
 								cols="50"

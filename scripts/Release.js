@@ -78,13 +78,13 @@ registerNamespace("LyricParser", function (ns)
 			this.innerHTML = `
 			<article class="card" aria-labelledby="${this.idKey}-hName">
 				${this.get_cardHeader("h3")}
-				<div id=${this.idKey}-togEl>
+				<div id="${this.idKey}-togEl">
 					<div class="input-horizontal-flex card-line">
 						<div class="input-vertical">
 							<label for="${this.idKey}-txtName">Name</label>
 							<input id="${this.idKey}-txtName"
 								type="text"
-								data-owner=${this.idKey}
+								data-owner="${this.idKey}"
 								data-prop="Name"
 							/>
 						</div>
@@ -92,14 +92,14 @@ registerNamespace("LyricParser", function (ns)
 							<label for="${this.idKey}-numYear">Year</label>
 							<input id="${this.idKey}-numYear"
 								type="number"
-								data-owner=${this.idKey}
+								data-owner="${this.idKey}"
 								data-prop="Year"
 							/>
 						</div>
 						<div class="input-vertical">
 							<label for="${this.idKey}-selMonth">Month</label>
 							<select id="${this.idKey}-selMonth"
-								data-owner=${this.idKey}
+								data-owner="${this.idKey}"
 								data-prop="Month"
 							>
 								<option value="1">January</option>
@@ -120,16 +120,16 @@ registerNamespace("LyricParser", function (ns)
 							<label for="${this.idKey}-txtLink">Art Link</label>
 							<input id="${this.idKey}-txtLink"
 								type="text"
-								data-owner=${this.idKey}
+								data-owner="${this.idKey}"
 								data-prop="Link"
 							/>
 						</div>
 					</div>
 					<div class="btn-header compact">
 						<h4>Tracks</h4>
-						<button id=${this.idKey}-btnAddTrack>Add Track</button>
+						<button id="${this.idKey}-btnAddTrack">Add Track</button>
 					</div>
-					<ol id=${this.idKey}-trackList></ol>
+					<ol id="${this.idKey}-trackList"></ol>
 				</div>
 			</article>
 			`;
@@ -160,17 +160,17 @@ registerNamespace("LyricParser", function (ns)
 			this.trackIncrement++;
 			const trackId = `${this.idKey}-${this.trackIncrement}`;
 			this.trackList.insertAdjacentHTML("beforeend", `
-			<li id=${trackId}-li>
+			<li id="${trackId}-li">
 				<div class="input-list-line">
-					<label for=${trackId}>Title: </label>
+					<label for="${trackId}">Title: </label>
 					<input id="${trackId}" type="text" value="${name}"/>
 					<gw-be-link
-						inputElId=${trackId}
+						inputElId="${trackId}"
 						networkedBEName="gw-track"
 						createDelegate="LyricParser.Pages.Builder.addTrack"
 						linkDelegate="LyricParser.Pages.Builder.onLinkTrack"
 					></gw-be-link>
-					<button id=${trackId}-del><gw-icon iconKey="trash" title="delete"></gw-icon></button>
+					<button id="${trackId}-del"><gw-icon iconKey="trash" title="delete"></gw-icon></button>
 				</div>
 			</li>
 			`);
