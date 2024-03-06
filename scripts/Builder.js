@@ -105,6 +105,7 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 		LyricParser.Data.Meta = LyricParser.Data.Meta || {};
 
 		document.getElementById("txtArtist").value = LyricParser.Data.Meta.Artist || "";
+		document.getElementById("txtArtistImg").value = LyricParser.Data.Meta.ArtistImage || "";
 		setSaveTime(new Date(LyricParser.Data.Meta["Last Save"]));
 
 		const trackContainer = document.getElementById("trackContainer");
@@ -153,6 +154,7 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 
 		LyricParser.Data.Meta["Last Save"] = new Date();
 		LyricParser.Data.Meta.Artist = document.getElementById("txtArtist").value || "";
+		LyricParser.Data.Meta.ArtistImage = document.getElementById("txtArtistImg").value || "";
 
 		Common.FileLib.saveJSONFile(
 			LyricParser.Data || {},

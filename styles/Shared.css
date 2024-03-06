@@ -29,3 +29,12 @@ mark {
 	color: var(--heading-color);
 	background-color: var(--accent-color);
 }
+
+@media (max-width: 675px) {
+	.three-header {
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+		justify-content: center !important;
+	}
+}

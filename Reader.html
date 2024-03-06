@@ -84,15 +84,21 @@
 					<div id="mainPageCtrl_page_Overview" class="page-control-page">
 						<h2 id="hOverview" class="sr-only">Overview</h2>
 						<div id="overviewContent">
-							<table aria-labelledby="hOverview">
-								<tbody>
-									<tr><th scopt="row">Artist</th><td id="tdArtist">-</td></tr>
-									<tr><th scopt="row">Releases</th><td id="tdReleases">-</td></tr>
-									<tr><th scopt="row">Tracks</th><td id="tdTracks">-</td></tr>
-									<tr><th scopt="row">Unique Words</th><td id="tdUniqueWords">-</td></tr>
-									<tr><th scopt="row">Discography Created</th><td><time id="timeCreated">-</time></td></tr>
-								</tbody>
-							</table>
+							<div id="profileTableDiv">
+								<figure>
+									<img id="imgProfile" alt="Artist profile image">
+									<figcaption id="capProfile"></figcaption>
+								</figure>
+								<table aria-labelledby="hOverview">
+									<tbody>
+										<tr><th scopt="row">Artist</th><td id="tdArtist">-</td></tr>
+										<tr><th scopt="row">Releases</th><td id="tdReleases">-</td></tr>
+										<tr><th scopt="row">Tracks</th><td id="tdTracks">-</td></tr>
+										<tr><th scopt="row">Unique Words</th><td id="tdUniqueWords">-</td></tr>
+										<tr><th scopt="row">Discography Created</th><td><time id="timeCreated">-</time></td></tr>
+									</tbody>
+								</table>
+							</div>
 							<div>
 								<h3 id="hOverviewUncWords">Top Uncommon Words</h3>
 								<ol id="overviewWordsList" aria-labelledby="hOverviewUncWords" class="spacy-list">

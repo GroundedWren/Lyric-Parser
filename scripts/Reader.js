@@ -63,6 +63,9 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 	};
 	function renderOverview()
 	{
+		document.getElementById("imgProfile").src = LyricParser.Data.Meta.ArtistImage;
+		document.getElementById("capProfile").innerText = `Image belongs to ${LyricParser.Data.Meta.Artist}`;
+
 		document.getElementById("tdArtist").innerHTML = LyricParser.Data.Meta.Artist;
 		document.getElementById("tdReleases").innerHTML = Object.keys(LyricParser.Data.Releases).length;
 		document.getElementById("tdTracks").innerHTML = Object.keys(LyricParser.Data.Tracks).length;
