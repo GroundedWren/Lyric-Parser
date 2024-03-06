@@ -135,6 +135,8 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 		{
 			LyricParser.Data.Releases[releaseTitle].Tracks.forEach(trackTitle =>
 			{
+				if (!LyricParser.Data.Tracks[trackTitle]) { return; }
+
 				LyricParser.Data.Tracks[trackTitle].OrderedReleases =
 					LyricParser.Data.Tracks[trackTitle].OrderedReleases || [];
 				LyricParser.Data.Tracks[trackTitle].OrderedReleases.push(releaseTitle);
