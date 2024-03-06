@@ -66,6 +66,10 @@ main {
 	color: var(--accent-color);
 }
 
+#releaseList {
+	padding-left: 25px;
+}
+
 gw-release-display {
 	display: block;
 }
