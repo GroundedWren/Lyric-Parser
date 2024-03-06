@@ -14,6 +14,7 @@ registerNamespace("LyricParser", function (ns)
 
 		//#region element properties
 		articleEl;
+		titleEl;
 		//#endregion
 		//#endregion
 
@@ -51,7 +52,7 @@ registerNamespace("LyricParser", function (ns)
 						tabindex="-1"
 			>
 				<div class="card-header">
-					<h3 id="${this.idKey}-hTitle">${this.title}</h3>
+					<h3 id="${this.idKey}-hTitle" tabIndex="-1">${this.title}</h3>
 					<time class="header-time" datetime="${this.datetime.toISOString()}">
 						${this.datetime.toLocaleDateString(undefined, { year: 'numeric', month: 'long' }) }
 					</time>
@@ -124,6 +125,7 @@ registerNamespace("LyricParser", function (ns)
 
 			//element properties
 			this.articleEl = document.getElementById(`${this.idKey}-article`);
+			this.titleEl = document.getElementById(`${this.idKey}-hTitle`);
 		}
 
 		//#region Handlers

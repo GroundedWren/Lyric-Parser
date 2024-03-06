@@ -89,37 +89,38 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 
 	ns.linkRelease = (releaseTitle) =>
 	{
-		const articleEl = Object.values(LyricParser.ReleaseDisplayEl.instanceMap).filter(
+		const releaseDispEl = Object.values(LyricParser.ReleaseDisplayEl.instanceMap).filter(
 			releaseDispEl => releaseDispEl.title.replace(/'/g, "") === releaseTitle
-		)[0].articleEl;
-		if (!articleEl)
+		)[0];
+		if (!releaseDispEl)
 		{
 			alert("Release not found");
 			return;
 		}
 
 		LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Releases", undefined, true);
-		articleEl.scrollIntoView();
+		releaseDispEl.articleEl.scrollIntoView();
 		Common.axAlertPolite("Release selected");
-		articleEl.focus({ focusVisible: true });
+		releaseDispEl.titleEl.focus();
+		setTimeout(() => { releaseDispEl.articleEl.focus(); }, 0);
 
 	};
 
 	ns.linkTrack = (trackTitle) =>
 	{
-		const articleEl = Object.values(LyricParser.TrackDisplayEl.instanceMap).filter(
+		const trackDispEl = Object.values(LyricParser.TrackDisplayEl.instanceMap).filter(
 			trackDispEl => trackDispEl.title.replace(/'/g, "") === trackTitle
-		)[0].articleEl;
-		if (!articleEl)
+		)[0];
+		if (!trackDispEl)
 		{
 			alert("Track not found");
 			return;
 		}
 
 		LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Tracks", undefined, true);
-		articleEl.scrollIntoView();
-		Common.axAlertPolite("Track selected");
-		articleEl.focus({ focusVisible: true });
+		trackDispEl.articleEl.scrollIntoView();
+		trackDispEl.titleEl.focus();
+		setTimeout(() => { trackDispEl.articleEl.focus(); }, 0);
 	};
 
 	ns.onSearchSubmit = (event) =>

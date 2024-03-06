@@ -17,6 +17,7 @@ registerNamespace("LyricParser", function (ns)
 
 		//#region element properties
 		articleEl;
+		titleEl;
 		//#endregion
 		//#endregion
 
@@ -89,13 +90,13 @@ registerNamespace("LyricParser", function (ns)
 		{
 			//Markup
 			this.innerHTML = `
-			<article	id=${this.idKey}-article
+			<article	id="${this.idKey}-article"
 						class="card"
 						aria-labelledby="${this.idKey}-hTitle"
-						tabindex="-1"
+						tabIndex="-1"
 			>
 				<div class="card-header">
-					<h3 id=${this.idKey}-hTitle>${this.title}</h3>
+					<h3 id="${this.idKey}-hTitle" tabIndex="-1">${this.title}</h3>
 				</div>
 				<div class="track-content">
 					<h4 id="${this.idKey}-hAppears">Appears on</h4>
@@ -140,6 +141,7 @@ registerNamespace("LyricParser", function (ns)
 
 			//element properties
 			this.articleEl = document.getElementById(`${this.idKey}-article`);
+			this.titleEl = document.getElementById(`${this.idKey}-hTitle`);
 		}
 
 		//#region Handlers
