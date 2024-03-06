@@ -74,12 +74,32 @@
 		<main id="mainContent">
 			<div id="mainPageCtrl" class="page-control">
 				<div id="mainPageCtrl_ts" class="tab-strip">
+					<button id="mainPageCtrl_tab_Overview" class="tab-strip-tab"><u>O</u>verview</button>
 					<button id="mainPageCtrl_tab_Releases" class="tab-strip-tab"><u>R</u>eleases</button>
 					<button id="mainPageCtrl_tab_Tracks" class="tab-strip-tab"><u>T</u>racks</button>
 					<button id="mainPageCtrl_tab_Search" class="tab-strip-tab">Se<u>a</u>rch</button>
 					<div id="mainPageCtrl_gutter" class="tab-gutter"></div>
 				</div>
 				<div id="mainPageCtrl_pgc" class="page-container">
+					<div id="mainPageCtrl_page_Overview" class="page-control-page">
+						<h2 id="hOverview" class="sr-only">Overview</h2>
+						<div id="overviewContent">
+							<table aria-labelledby="hOverview">
+								<tbody>
+									<tr><th scopt="row">Artist</th><td id="tdArtist">-</td></tr>
+									<tr><th scopt="row">Releases</th><td id="tdReleases">-</td></tr>
+									<tr><th scopt="row">Tracks</th><td id="tdTracks">-</td></tr>
+									<tr><th scopt="row">Unique Words</th><td id="tdUniqueWords">-</td></tr>
+									<tr><th scopt="row">Discography Created</th><td><time id="timeCreated">-</time></td></tr>
+								</tbody>
+							</table>
+							<div>
+								<h3 id="hOverviewUncWords">Top&nbsp;Uncommon&nbsp;Words</h3>
+								<ol id="overviewWordsList" aria-labelledby="hOverviewUncWords" class="spacy-list">
+								</ol>
+							</div>
+						</div>
+					</div>
 					<div id="mainPageCtrl_page_Releases" class="page-control-page">
 						<h2 id="hReleases" class="sr-only">Releases</h2>
 						<ol id="releaseList" aria-labelledby="hReleases"></ol>
@@ -93,8 +113,7 @@
 							  class="transparent-form"
 							  aria-labelledby="lblSearch"
 							  autocomplete="=off"
-							  onsubmit="LyricParser.Pages.Reader.onSearchSubmit(event)"
-						>
+							  onsubmit="LyricParser.Pages.Reader.onSearchSubmit(event)">
 							<div class="input-flex-line">
 								<label id="lblSearch" for="txtSearch" role="heading" aria-level="2">Search</label>
 								<input id="txtSearch" type="text" />

@@ -50,16 +50,67 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 
 		LyricParser.Data = discObj;
 
+		renderOverview();
 		renderReleases();
 		renderTracks();
 
 		window.history.replaceState(null, "", `?Discography=${encodeURIComponent(discObj.Meta.Artist)}`);
 		LyricParser.Pages.Reader.mainPageCtrl.enableTabs();
-		if (LyricParser.Pages.Reader.mainPageCtrl.activeTabId !== "mainPageCtrl_tab_Releases")
+		if (LyricParser.Pages.Reader.mainPageCtrl.activeTabId !== "mainPageCtrl_tab_Overview")
 		{
-			LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Releases", undefined, true);
+			LyricParser.Pages.Reader.mainPageCtrl.setActiveTab("mainPageCtrl_tab_Overview", undefined, true);
 		}
 	};
+	function renderOverview()
+	{
+		document.getElementById("tdArtist").innerHTML = LyricParser.Data.Meta.Artist;
+		document.getElementById("tdReleases").innerHTML = Object.keys(LyricParser.Data.Releases).length;
+		document.getElementById("tdTracks").innerHTML = Object.keys(LyricParser.Data.Tracks).length;
+		document.getElementById("tdUniqueWords").innerHTML = Object.keys(LyricParser.Data.WordIndex).length;
+
+		const saveDateTime = new Date(LyricParser.Data.Meta["Last Save"]);
+		const timeCreatedEl = document.getElementById("timeCreated");
+		timeCreatedEl.setAttribute("datetime", saveDateTime.toISOString());
+		timeCreatedEl.innerText = saveDateTime.toLocaleString(
+			undefined,
+			{ dateStyle: "short", timeStyle: "short" }
+		);
+
+		const topWordList = document.getElementById("overviewWordsList");
+		const uncommonWords = {};
+		Object.keys(LyricParser.Data.TrackWords).forEach(trackName =>
+		{
+			const trackWordsObj = LyricParser.Data.TrackWords[trackName];
+			Object.keys(trackWordsObj).forEach(word =>
+			{
+				const wordObj = trackWordsObj[word];
+				if (!uncommonWords[wordObj.eg])
+				{
+					uncommonWords[wordObj.eg] = wordObj.ct;
+				}
+				else
+				{
+					uncommonWords[wordObj.eg] += wordObj.ct;
+				}
+			});
+		});
+		const sortedUncommonWords = Object.keys(uncommonWords).sort((a, b) =>
+		{
+			return uncommonWords[b] - uncommonWords[a];
+		});
+		for (let i = 0; i < Math.min(sortedUncommonWords.length, 100); i++)
+		{
+			topWordList.insertAdjacentHTML(
+				"beforeend",
+				`<li>
+					<a	href="javascript:void(0)"
+						onclick="LyricParser.Pages.Reader.searchString('${sortedUncommonWords[i]}')"
+					>${sortedUncommonWords[i]}<sup>${uncommonWords[sortedUncommonWords[i]]}</sup>
+					</a>
+				</li>`
+			);
+		}
+	}
 	function renderReleases()
 	{
 		const releaseList = document.getElementById("releaseList");
@@ -223,6 +274,10 @@ window.onload = () =>
 	Common.loadTheme();
 	Common.setUpAccessibility();
 	Common.Components.registerShortcuts({
+		"ALT+O": {
+			action: () => { document.getElementById("mainPageCtrl_tab_Overview").click(); },
+			description: "Show overview"
+		},
 		"ALT+R": {
 			action: () => { document.getElementById("mainPageCtrl_tab_Releases").click(); },
 			description: "Show releases"
@@ -246,6 +301,7 @@ window.onload = () =>
 		document.getElementById("mainPageCtrl_ts"),
 		document.getElementById("mainPageCtrl_pgc"),
 		{
+			"mainPageCtrl_tab_Overview": document.getElementById("mainPageCtrl_page_Overview"),
 			"mainPageCtrl_tab_Releases": document.getElementById("mainPageCtrl_page_Releases"),
 			"mainPageCtrl_tab_Tracks": document.getElementById("mainPageCtrl_page_Tracks"),
 			"mainPageCtrl_tab_Search": document.getElementById("mainPageCtrl_page_Search"),

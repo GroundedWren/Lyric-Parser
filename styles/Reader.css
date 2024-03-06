@@ -19,6 +19,15 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 5px;
 }
 
+@media (max-width: 675px) {
+	.three-header {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
 .three-header-right {
 	display: flex;
 	flex-direction: column;
@@ -54,6 +63,8 @@ main {
 }
 #mainPageCtrl_pgc > * {
 	flex-grow: 1;
+	height: 100%;
+	min-height: 0px;
 }
 
 .card:focus .card-header {
@@ -98,11 +109,12 @@ gw-release-display .card-header {
 	width: 100%;
 }
 
-.release-content li{
+.spacy-list li{
 	padding: 5px;
+	padding-left: 0px;
 }
 
-.release-content a {
+.spacy-list a {
 	padding: 3px;
 	background-color: var(--accent-color);
 	border-radius: 20px;
@@ -144,6 +156,12 @@ sup {
 	margin: auto;
 }
 
+#searchForm > .input-flex-line {
+	flex-wrap: wrap;
+	justify-content: center;
+	row-gap: 5px;
+}
+
 #lblSearch {
 	flex-grow: 0;
 	word-break: break-all;
@@ -180,4 +198,31 @@ gw-result {
 
 figcaption {
 	font-size: 0.8em;
+}
+
+#overviewContent {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+}
+
+#overviewWordsList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	column-gap: 40px;
+}
+
+#overviewContent table {
+	background-color: var(--content-color-2);
+	max-width: 500px;
+	table-layout: fixed;
+}
+
+#overviewContent td {
+	padding-top: 5px;
+	padding-bottom: 5px;
 }

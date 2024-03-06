@@ -64,12 +64,12 @@ registerNamespace("LyricParser", function (ns)
 					</figure>
 					<div>
 						<h4 id="${this.idKey}-hTrackList">Track List</h4>
-						<ol id="${this.idKey}-trackList" aria-labelledby="${this.idKey}-hTrackList">
+						<ol id="${this.idKey}-trackList" aria-labelledby="${this.idKey}-hTrackList" class="spacy-list">
 						</ol>
 					</div>
 					<div>
 						<h4 id="${this.idKey}-hTopWordList">Top Uncommon Words</h4>
-						<ol id="${this.idKey}-topWordList" aria-labelledby="${this.idKey}-hTopWordList">
+						<ol id="${this.idKey}-topWordList" aria-labelledby="${this.idKey}-hTopWordList" class="spacy-list">
 						</ol>
 					</div>
 				</div>
@@ -119,7 +119,8 @@ registerNamespace("LyricParser", function (ns)
 						<a	href="javascript:void(0)"
 							onclick="LyricParser.Pages.Reader.searchString('${sortedCollectionWords[i]}')"
 						>${sortedCollectionWords[i]}<sup>${collectionWords[sortedCollectionWords[i]]}</sup>
-						</a></li>`
+						</a>
+					</li>`
 				);
 			}
 
