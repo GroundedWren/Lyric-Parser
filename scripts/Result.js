@@ -56,10 +56,23 @@ registerNamespace("LyricParser", function (ns)
 				return entry;
 			});
 
+			const stanzaLines = ns.Data.Tracks[this.track].Stanzas[this.stanza];
+			if (this.maxLn === this.minLn)
+			{
+				if (this.minLn > 0)
+				{
+					this.minLn--;
+				}
+				else if (this.maxLn < stanzaLines.length - 1)
+				{
+					this.maxLn++;
+				}
+			}
+
 			this.lines = [];
 			for (let i = this.minLn; i <= this.maxLn; i++)
 			{
-				this.lines.push(ns.Data.Tracks[this.track].Stanzas[this.stanza][i].slice());
+				this.lines.push(stanzaLines[i].slice());
 			}
 			this.entries.forEach(entry =>
 			{
