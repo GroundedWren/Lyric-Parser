@@ -90,35 +90,35 @@ registerNamespace("LyricParser", function (ns)
 			});
 
 			const topWordList = document.getElementById(`${this.idKey}-topWordList`);
-			const collectionWords = {};
+			const collectionWordObjs = {};
 			this.data.Tracks.forEach(trackName =>
 			{
 				const trackWordsObj = ns.Data.TrackWords[trackName];
 				Object.keys(trackWordsObj).forEach(word =>
 				{
 					const wordObj = trackWordsObj[word];
-					if (!collectionWords[wordObj.eg])
+					if (!collectionWordObjs[word])
 					{
-						collectionWords[wordObj.eg] = wordObj.ct;
+						collectionWordObjs[word] = {ct: wordObj.ct, eg: wordObj.eg};
 					}
 					else
 					{
-						collectionWords[wordObj.eg] += wordObj.ct;
+						collectionWordObjs[word].ct += wordObj.ct;
 					}
 				});
 			});
-			const sortedCollectionWords = Object.keys(collectionWords).sort((a, b) =>
+			const sortedCollectionWordObjs = Object.values(collectionWordObjs).sort((a, b) =>
 			{
-				return collectionWords[b] - collectionWords[a];
+				return b.ct - a.ct;
 			});
-			for (let i = 0; i < Math.min(sortedCollectionWords.length, 15); i++)
+			for (let i = 0; i < Math.min(sortedCollectionWordObjs.length, 15); i++)
 			{
 				topWordList.insertAdjacentHTML(
 					"beforeend",
 					`<li>
 						<a	href="javascript:void(0)"
-							onclick="LyricParser.Pages.Reader.searchString('${sortedCollectionWords[i]}')"
-						>${sortedCollectionWords[i]}<sup>${collectionWords[sortedCollectionWords[i]]}</sup>
+							onclick="LyricParser.Pages.Reader.searchString('${sortedCollectionWordObjs[i].eg}')"
+						>${sortedCollectionWordObjs[i].eg}<sup>${sortedCollectionWordObjs[i].ct}</sup>
 						</a>
 					</li>`
 				);

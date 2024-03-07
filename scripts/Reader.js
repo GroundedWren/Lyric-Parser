@@ -80,35 +80,35 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		);
 
 		const topWordList = document.getElementById("overviewWordsList");
-		const uncommonWords = {};
+		const uncommonWordObjs = {};
 		Object.keys(LyricParser.Data.TrackWords).forEach(trackName =>
 		{
 			const trackWordsObj = LyricParser.Data.TrackWords[trackName];
 			Object.keys(trackWordsObj).forEach(word =>
 			{
 				const wordObj = trackWordsObj[word];
-				if (!uncommonWords[wordObj.eg])
+				if (!uncommonWordObjs[word])
 				{
-					uncommonWords[wordObj.eg] = wordObj.ct;
+					uncommonWordObjs[word] = {ct: wordObj.ct, eg: wordObj.eg};
 				}
 				else
 				{
-					uncommonWords[wordObj.eg] += wordObj.ct;
+					uncommonWordObjs[word].ct += wordObj.ct;
 				}
 			});
 		});
-		const sortedUncommonWords = Object.keys(uncommonWords).sort((a, b) =>
+		const sortedUncommonWordObjs = Object.values(uncommonWordObjs).sort((a, b) =>
 		{
-			return uncommonWords[b] - uncommonWords[a];
+			return b.ct - a.ct;
 		});
-		for (let i = 0; i < Math.min(sortedUncommonWords.length, 100); i++)
+		for (let i = 0; i < Math.min(sortedUncommonWordObjs.length, 100); i++)
 		{
 			topWordList.insertAdjacentHTML(
 				"beforeend",
 				`<li>
 					<a	href="javascript:void(0)"
-						onclick="LyricParser.Pages.Reader.searchString('${sortedUncommonWords[i]}')"
-					>${sortedUncommonWords[i]}<sup>${uncommonWords[sortedUncommonWords[i]]}</sup>
+						onclick="LyricParser.Pages.Reader.searchString('${sortedUncommonWordObjs[i].eg}')"
+					>${sortedUncommonWordObjs[i].eg}<sup>${sortedUncommonWordObjs[i].ct}</sup>
 					</a>
 				</li>`
 			);
