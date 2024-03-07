@@ -1,7 +1,8 @@
 registerNamespace("LyricParser.Pages.Reader", function (ns)
 {
 	ns.urlParamMap = {
-		"Iron & Wine": "./data/Iron_and_Wine.json"
+		"Iron & Wine": "./data/Iron_and_Wine.json",
+		"John Aulabaugh": "./data/John_Aulabaugh.json"
 	};
 	ns.interperetUrlParams = (searchParams) =>
 	{
