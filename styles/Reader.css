@@ -107,8 +107,9 @@ gw-release-display .card-header {
 
 .spacy-list a {
 	padding: 3px;
-	background-color: var(--accent-color);
 	border-radius: 20px;
+	background-color: var(--accent-color);
+	color: var(--heading-color)
 }
 
 #trackList {

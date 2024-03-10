@@ -91,3 +91,26 @@ gw-comment-list > * {
 #commentAside h2 {
 	text-align: center;
 }
+
+gw-themer * {
+	box-sizing: content-box !important;
+}
+
+gw-themer h2 {
+	font-size: 1.2em;
+}
+
+gw-themer table, gw-themer th, gw-themer td {
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-collapse: collapse;
+}
+
+gw-themer th {
+	padding-right: 5px
+}
+
+gw-themer td, gw-themer th {
+	padding-top: 5px
+}
