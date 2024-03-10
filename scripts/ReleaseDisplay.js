@@ -94,6 +94,8 @@ registerNamespace("LyricParser", function (ns)
 			this.data.Tracks.forEach(trackName =>
 			{
 				const trackWordsObj = ns.Data.TrackWords[trackName];
+				if (!trackWordsObj) { return; }
+
 				Object.keys(trackWordsObj).forEach(word =>
 				{
 					const wordObj = trackWordsObj[word];

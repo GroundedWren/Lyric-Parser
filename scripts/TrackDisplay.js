@@ -40,6 +40,8 @@ registerNamespace("LyricParser", function (ns)
 			this.data = ns.Data.Tracks[this.title];
 			this.trackWords = ns.Data.TrackWords[this.title];
 
+			this.data.Stanzas = this.data.Stanzas || [];
+
 			this.#buildLinksByIndex();
 
 			this.renderContent();
