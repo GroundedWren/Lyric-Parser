@@ -49,6 +49,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		document.getElementById("releaseList").innerHTML = "";
 		document.getElementById("trackList").innerHTML = "";
 		document.getElementById("overviewWordsList").innerHTML = "";
+		document.getElementById("searchResultList").innerHTML = "";
 
 		LyricParser.Data = discObj;
 
