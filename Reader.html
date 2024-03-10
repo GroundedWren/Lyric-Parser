@@ -28,6 +28,7 @@
 	<script src="./common/scripts/Controls/PageControl.js"></script>
 	<script src="./common/scripts/Controls/ZeroState.js"></script>
 
+	<script src="./scripts/LyricParser.js"></script>
 	<script src="./scripts/ReleaseDisplay.js"></script>
 	<script src="./scripts/TrackDisplay.js"></script>
 	<script src="./scripts/Result.js"></script>
@@ -83,7 +84,7 @@
 				</div>
 				<div id="mainPageCtrl_pgc" class="page-container">
 					<div id="mainPageCtrl_page_Overview" class="page-control-page">
-						<h2 id="hOverview" class="sr-only">Overview</h2>
+						<h2 id="hOverview" class="sr-only pgc-anchor" tabindex="-1">Overview</h2>
 						<div id="overviewContent">
 							<div id="profileTableDiv">
 								<figure>
@@ -108,11 +109,11 @@
 						</div>
 					</div>
 					<div id="mainPageCtrl_page_Releases" class="page-control-page">
-						<h2 id="hReleases" class="sr-only">Releases</h2>
+						<h2 id="hReleases" class="sr-only pgc-anchor" tabindex="-1">Releases</h2>
 						<ol id="releaseList" aria-labelledby="hReleases"></ol>
 					</div>
 					<div id="mainPageCtrl_page_Tracks" class="page-control-page">
-						<h2 id="hTracks" class="sr-only">Tracks</h2>
+						<h2 id="hTracks" class="sr-only pgc-anchor" tabindex="-1">Tracks</h2>
 						<ul id="trackList" aria-labelledby="hTracks"></ul>
 					</div>
 					<div id="mainPageCtrl_page_Search" class="page-control-page">
@@ -123,7 +124,7 @@
 							  onsubmit="LyricParser.Pages.Reader.onSearchSubmit(event)">
 							<div class="input-flex-line">
 								<label id="lblSearch" for="txtSearch" role="heading" aria-level="2">Search</label>
-								<input id="txtSearch" type="text" />
+								<input id="txtSearch" class="pgc-anchor" type="text" />
 								<input id="searchSubmit" type="submit" value="Search" />
 							</div>
 						</form>

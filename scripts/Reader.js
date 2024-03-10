@@ -201,9 +201,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 
 		const searchWords = string.split(" ");
 		const stmdSearchWrds = searchWords.map(
-			word => stemmer(
-				word.toLowerCase().replace(/\u003f|!|\u002e|,|\u0022|'s/g, "").replace(/\u2019|\u2018/g, "'")
-			)
+			word => stemmer(LyricParser.preStemWord(word))
 		).filter((val, idx, ary) => ary.indexOf(val) === idx);
 
 		const resultMap = {};
@@ -322,6 +320,14 @@ window.onload = () =>
 		document.getElementById("mainPageCtrl_gutter")
 	);
 	LyricParser.Pages.Reader.mainPageCtrl.disableTabs();
+
+	const alertLoading = () =>
+	{
+		Common.axAlertPolite("Loading");
+	}
+	LyricParser.Pages.Reader.mainPageCtrl.addOnActivate("mainPageCtrl_tab_Releases", alertLoading);
+	LyricParser.Pages.Reader.mainPageCtrl.addOnActivate("mainPageCtrl_tab_Tracks", alertLoading);
+	LyricParser.Pages.Reader.mainPageCtrl.addOnActivate("mainPageCtrl_tab_Search", alertLoading);
 
 	if (window.location.search)
 	{

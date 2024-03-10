@@ -62,11 +62,7 @@ registerNamespace("LyricParser", function (ns)
 					for (let wNum = 0; wNum < wordAry.length; wNum++)
 					{
 						const word = wordAry[wNum];
-						let stemmedWord = word.toLowerCase().replace(
-							/\u003f|!|\u002e|,|\u0022|'s/g,
-							""
-						).replace(/\u2019|\u2018/g, "'");
-						stemmedWord = stemmer(stemmedWord).toLowerCase();
+						let stemmedWord = stemmer(LyricParser.preStemWord(word));
 
 						if (linkedWords.hasOwnProperty(stemmedWord)
 							|| !this.trackWords.hasOwnProperty(stemmedWord)

@@ -185,10 +185,7 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 					const words = lines[lineNum].split(" ");
 					for (let wordNum = 0; wordNum < words.length; wordNum++)
 					{
-						const word = words[wordNum].toLowerCase().replace(
-							/\u003f|!|\u002e|,|\u0022|'s/g,
-							""
-						).replace(/\u2019|\u2018/g, "'");
+						const word = LyricParser.preStemWord(words[wordNum])
 						if (!word) { continue; }
 
 						const stemmedWord = stemmer(word);
