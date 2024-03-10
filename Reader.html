@@ -61,6 +61,7 @@
 					<select id="selDiscography" onchange="LyricParser.Pages.Reader.changeDiscography()">
 						<option disabled selected value>Select a discography</option>
 						<option value="./data/Iron_and_Wine.json">Iron &#38; Wine</option>
+						<option value="./data/Avatar.json">Avatar</option>
 						<option value="./data/John_Aulabaugh.json">John Aulabaugh</option>
 						<option value="UPLOAD">Upload</option>
 					</select>
@@ -86,6 +87,10 @@
 					<div id="mainPageCtrl_page_Overview" class="page-control-page">
 						<h2 id="hOverview" class="sr-only pgc-anchor" tabindex="-1">Overview</h2>
 						<div id="overviewContent">
+							<div id="avatarWarningBanner" class="inline-banner center warning hidden" role="alert">
+								<gw-icon title="Content warning: " iconKey="triangle-exclamation"></gw-icon>
+								Avatar's discography contains strong language, themes of violence, and references to sexual assault
+							</div>
 							<div id="profileTableDiv">
 								<figure>
 									<img id="imgProfile" alt="Artist profile image">

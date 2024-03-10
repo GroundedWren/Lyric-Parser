@@ -2,7 +2,8 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 {
 	ns.urlParamMap = {
 		"Iron & Wine": "./data/Iron_and_Wine.json",
-		"John Aulabaugh": "./data/John_Aulabaugh.json"
+		"Avatar": "./data/Avatar.json",
+		"John Aulabaugh": "./data/John_Aulabaugh.json",
 	};
 	ns.interperetUrlParams = (searchParams) =>
 	{
@@ -50,6 +51,15 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		document.getElementById("trackList").innerHTML = "";
 		document.getElementById("overviewWordsList").innerHTML = "";
 		document.getElementById("searchResultList").innerHTML = "";
+
+		if (discObj.Meta.Artist === "Avatar")
+		{
+			document.getElementById("avatarWarningBanner").classList.remove("hidden");
+		}
+		else
+		{
+			document.getElementById("avatarWarningBanner").classList.add("hidden");
+		}
 
 		LyricParser.Data = discObj;
 
