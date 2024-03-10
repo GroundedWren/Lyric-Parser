@@ -227,7 +227,8 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 		{
 			const relA = LyricParser.Data.Releases[a];
 			const relB = LyricParser.Data.Releases[b];
-			return parseInt(relA.Year + relA.Month) - parseInt(relB.Year + relB.Month);
+			return (parseInt(relA.Year) + parseInt(relA.Month) * .01)
+				- (parseInt(relB.Year) + parseInt(relB.Month) * .01);
 		});
 	}
 	function setSaveTime(saveDateTime)
