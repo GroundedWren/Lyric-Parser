@@ -147,6 +147,8 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 		Object.keys(LyricParser.Data.Tracks).forEach(trackName =>
 		{
 			const lyrics = LyricParser.Data.Tracks[trackName].LyricsText;
+			if (!lyrics) { return; }
+
 			LyricParser.Data.Tracks[trackName].Stanzas = lyrics.split("\n\n").map(
 				stanza => stanza.split("\n").map(line => line.split(" "))
 			);
@@ -170,6 +172,7 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 		LyricParser.Data.TrackWords = {};
 		Object.values(LyricParser.Data.Tracks).forEach(trackObj =>
 		{
+			if (!trackObj.LyricsText) { return; }
 			const trackEntry = {};
 
 			let position = 0;
@@ -183,6 +186,8 @@ registerNamespace("LyricParser.Pages.Builder", function (ns)
 					for (let wordNum = 0; wordNum < words.length; wordNum++)
 					{
 						const word = words[wordNum].toLowerCase().replace(/\u003f|!|\u002e|,|\u0022/g, "");
+						if (!word) { continue; }
+
 						const stemmedWord = stemmer(word);
 
 						const indexEntry = LyricParser.Data.WordIndex[stemmedWord] || [];
