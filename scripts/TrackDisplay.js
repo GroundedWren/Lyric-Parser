@@ -63,7 +63,7 @@ registerNamespace("LyricParser", function (ns)
 					{
 						const word = wordAry[wNum];
 						let stemmedWord = word.toLowerCase().replace(
-							/\u003f|!|\u002e|,|\u0022/g,
+							/\u003f|!|\u002e|,|\u0022|'s/g,
 							""
 						).replace(/\u2019|\u2018/g, "'");
 						stemmedWord = stemmer(stemmedWord).toLowerCase();

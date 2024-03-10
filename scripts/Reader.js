@@ -202,7 +202,7 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		const searchWords = string.split(" ");
 		const stmdSearchWrds = searchWords.map(
 			word => stemmer(
-				word.toLowerCase().replace(/\u003f|!|\u002e|,|\u0022/g, "").replace(/\u2019|\u2018/g, "'")
+				word.toLowerCase().replace(/\u003f|!|\u002e|,|\u0022|'s/g, "").replace(/\u2019|\u2018/g, "'")
 			)
 		).filter((val, idx, ary) => ary.indexOf(val) === idx);
 
