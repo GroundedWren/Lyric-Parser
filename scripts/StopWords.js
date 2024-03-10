@@ -4,6 +4,10 @@
 registerNamespace("LyricParser", function (ns)
 {
 	ns.StemmedStopWords = {
+		"i'm": "",
+		"it'": "",
+		"i'll": "",
+		"'caus": "",
 		"abl": "",
 		"about": "",
 		"abov": "",
