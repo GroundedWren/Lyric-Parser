@@ -8,6 +8,7 @@ registerNamespace("LyricParser", function (ns)
 		"it'": "",
 		"i'll": "",
 		"'caus": "",
+		"wanna": "",
 		"abl": "",
 		"about": "",
 		"abov": "",
