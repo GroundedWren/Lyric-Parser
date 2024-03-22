@@ -51,6 +51,8 @@ registerNamespace("LyricParser.Pages.Reader", function (ns)
 		document.getElementById("trackList").innerHTML = "";
 		document.getElementById("overviewWordsList").innerHTML = "";
 		document.getElementById("searchResultList").innerHTML = "";
+		LyricParser.TrackDisplayEl.instanceMap = {};
+		LyricParser.ReleaseDisplayEl.instanceMap = {};
 
 		if (discObj.Meta.Artist === "Avatar")
 		{
