@@ -30,6 +30,12 @@ h1, h2, h3, h4, h5, h6 {
 	align-items: center;
 }
 
+#sChangeWarn {
+	font-size: 0.8em;
+	font-style: italic;
+	margin-bottom: 5px;
+}
+
 main {
 	flex-grow: 1;
 	display: flex;

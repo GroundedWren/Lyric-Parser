@@ -57,8 +57,12 @@
 			</div>
 			<div class="three-header-right">
 				<div class="input-vertical">
+					<span id="sChangeWarn">Changes have immediate effect</span>
 					<label id="lblDiscography" for="selDiscography">Discography</label>
-					<select id="selDiscography" onchange="LyricParser.Pages.Reader.changeDiscography()">
+					<select id="selDiscography"
+							aria-describedby="sChangeWarn"
+							onchange="LyricParser.Pages.Reader.changeDiscography()"
+					>
 						<option disabled selected value>Select a discography</option>
 						<option value="./data/Iron_and_Wine.json">Iron &#38; Wine</option>
 						<option value="./data/Avatar.json">Avatar</option>
@@ -70,6 +74,7 @@
 					   type="file"
 					   accept=".json"
 					   aria-labelledby="lblDiscography"
+					   aria-describedby="sChangeWarn"
 					   class="hidden"
 					   onchange="LyricParser.Pages.Reader.onFileUpload(event)" />
 			</div>
