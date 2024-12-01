@@ -6,6 +6,10 @@ body {
 	height: 100vh;
 }
 
+*[tabindex="-1"]:focus {
+	outline: none !important;
+}
+
 #subveil {
 	display: flex;
 	flex-direction: column;
